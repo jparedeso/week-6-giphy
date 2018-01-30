@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 	var animals = ["dog", "cat"];
 
 	function displayAnimals () {
@@ -18,7 +19,12 @@ $(document).ready(function(){
             var p1 = $("<p>").text("Rating: " + results[i].rating);
             animalDiv.append(p1);
 
-            var p2 = $("<img>").attr("src", results[i].images.fixed_height.url);         
+            var p2 = $("<img>");
+            p2.addClass("animate");
+            p2.attr("src", results[i].images.fixed_height_still.url);
+            p2.attr("data-still", results[i].images.fixed_height_still.url);
+			p2.attr("data-animate", results[i].images.fixed_height.url);
+			p2.attr("data-state", "still");    
             animalDiv.append(p2);
 
             $("#image-display").append(animalDiv);
@@ -46,6 +52,23 @@ $(document).ready(function(){
 	});
 
 	$(document).on("click", ".animal", displayAnimals);
+
+	$(document).on("click", ".animate", function() {
+
+		var state = $(this).attr("data-state");
+		
+		if (state === "still") {
+	        var myState = $(this).attr("data-animate");
+	        $(this).attr("src", myState);
+	        $(this).attr("data-state", "animate");
+        } else {
+	        var myState2 = $(this).attr("data-still");
+	        $(this).attr("src", myState2);
+	        $(this).attr("data-state", "still");
+        }
+
+	});
+
 	createButtons();	
 
 });
