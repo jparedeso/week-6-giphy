@@ -9,22 +9,22 @@ $(document).ready(function(){
 		$.ajax({
 			url: queryURL,
 			method: "GET"
-		}).done(function(response) {
-          
+		}).done(function(response) {			
+          $("#image-display").empty();
           var results = response.data;          
           for (var i = 0; i < results.length; i++) {
-           
-            var animalDiv = $("<div>");
+
+            var animalDiv = $("<div class='myImage'>");
 
             var p1 = $("<p>").text("Rating: " + results[i].rating);
             animalDiv.append(p1);
 
             var p2 = $("<img>");
-            p2.addClass("animate");
-            p2.attr("src", results[i].images.fixed_height_still.url);
-            p2.attr("data-still", results[i].images.fixed_height_still.url);
-			p2.attr("data-animate", results[i].images.fixed_height.url);
-			p2.attr("data-state", "still");    
+            p2.addClass("animate")
+              .attr("src", results[i].images.fixed_height_still.url)
+              .attr("data-still", results[i].images.fixed_height_still.url)
+			  .attr("data-animate", results[i].images.fixed_height.url)
+			  .attr("data-state", "still");   
             animalDiv.append(p2);
 
             $("#image-display").append(animalDiv);
