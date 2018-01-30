@@ -3,21 +3,27 @@ $(document).ready(function(){
 
 	function displayAnimals () {
 		var animal = $(this).attr("data-animal");
-		var url = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10"; 
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10"; 
 
 		$.ajax({
-			url: url,
+			url: queryURL,
 			method: "GET"
 		}).done(function(response) {
-			var animalDiv = $("<div class='animal'>");
-			var rating = response.rating;
-			var p1 = $("<p>").text("Rating: " + rating);
-			animalDiv.append(p1);
-			var p2 = $("<img>").attr("src", response.data.images.fixed_height.url);	
-			animalDiv.append(p2);
-			$("#image-display").append(animalDiv);
+          
+          var results = response.data;          
+          for (var i = 0; i < results.length; i++) {
+           
+            var animalDiv = $("<div>");
 
-		});
+            var p1 = $("<p>").text("Rating: " + results[i].rating);
+            animalDiv.append(p1);
+
+            var p2 = $("<img>").attr("src", results[i].images.fixed_height.url);         
+            animalDiv.append(p2);
+
+            $("#image-display").append(animalDiv);
+          }
+        });
 	}
 
 	function  createButtons() {
