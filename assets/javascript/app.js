@@ -1,20 +1,19 @@
+$(document).ready(function(){
+	var animals = ["dog", "cat"];
 
-	var animals = [];
-
-	function displayAnimals (){
+	function displayAnimals () {
 		var animal = $(this).attr("data-animal");
-		var URL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10"; 
+		var url = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10"; 
 
 		$.ajax({
-			url: URL,
+			url: url,
 			method: "GET"
 		}).done(function(response) {
 			var animalDiv = $("<div class='animal'>");
 			var rating = response.rating;
 			var p1 = $("<p>").text("Rating: " + rating);
 			animalDiv.append(p1);
-			var p2 = $("<img>");
-			p2.attr("src", response.data.images.fixed_height.url);	
+			var p2 = $("<img>").attr("src", response.data.images.fixed_height.url);	
 			animalDiv.append(p2);
 			$("#image-display").append(animalDiv);
 
@@ -22,13 +21,13 @@
 	}
 
 	function  createButtons() {
-		$("button-display").empty();
+		$("#button-display").empty();
 		for (var i = 0; i < animals.length; i++) {
 			var button = $("<button>");
 			button.addClass("animal");
 			button.attr("data-animal", animals[i]);
 			button.text(animals[i]);
-			$("button-display").append(button);
+			$("#button-display").append(button);
 		}	
 	}
 
@@ -43,7 +42,7 @@
 	$(document).on("click", ".animal", displayAnimals);
 	createButtons();	
 
-
+});
 
 
 
