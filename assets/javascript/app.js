@@ -20,7 +20,7 @@ $(document).ready(function(){
             animalDiv.append(p1);
 
             var p2 = $("<img>");
-            p2.addClass("animate")
+            p2.addClass("animate test")
               .attr("src", results[i].images.fixed_height_still.url)
               .attr("data-still", results[i].images.fixed_height_still.url)
 			  .attr("data-animate", results[i].images.fixed_height.url)
@@ -36,7 +36,7 @@ $(document).ready(function(){
 		$("#button-display").empty();
 		for (var i = 0; i < animals.length; i++) {
 			var button = $("<button>");
-			button.addClass("animal");
+			button.addClass("animal btn btn-primary");
 			button.attr("data-animal", animals[i]);
 			button.text(animals[i]);
 			$("#button-display").append(button);
