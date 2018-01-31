@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	var animals = ["dog", "cat"];
+	var animals = ["dog", "cat", "cow"];
 
 	function displayAnimals () {
 		var animal = $(this).attr("data-animal");
@@ -20,7 +20,7 @@ $(document).ready(function(){
             animalDiv.append(p1);
 
             var p2 = $("<img>");
-            p2.addClass("animate test")
+            p2.addClass("animate")
               .attr("src", results[i].images.fixed_height_still.url)
               .attr("data-still", results[i].images.fixed_height_still.url)
 			  .attr("data-animate", results[i].images.fixed_height.url)

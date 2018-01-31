@@ -12,8 +12,10 @@ body {
 }
 
 .side-bar {
-	position: -webkit-sticky;
  	position: sticky;
  	top: 0;
 }
 
+#image-display p {
+	font-weight: bold;
+}
